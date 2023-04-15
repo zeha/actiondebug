@@ -1,0 +1,14 @@
+name: actiondebug
+on:
+  push:
+  workflow_dispatch:
+concurrency:
+  group: "${{ github.ref }}"
+  cancel-in-progress: true
+jobs:
+  build_win32:
+    runs-on: windows-latest
+    timeout-minutes: 120
+    steps:
+    - uses: actions/checkout@v3
+    - run: '& ".\build-product-magpath.ps1"'

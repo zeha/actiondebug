@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+
+  <Target Name="Sign">
+    <Exec Command="&quot;$(BuildDepsPath)\authenticode\signtool.exe&quot; sign /v /ph /n &quot;Deduktiva GmbH&quot; /d &quot;Magnolia&quot; /du https://deduktiva.com/ /tr http://timestamp.digicert.com /td sha256 /fd sha256 /a &quot;@(FileToSign)&quot; "/>
+  </Target>
+
+  <ItemGroup>
+    <FileToSign Include="$(OutDir)$(TargetName)$(TargetExt)" />
+  </ItemGroup>
+
+</Project>
