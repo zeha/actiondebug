@@ -23,7 +23,7 @@ jobs:
   #       path: code/Release/Magnolia-IDE.exe
 
   build_ide:
-    runs-on: ubuntu-2204
+    runs-on: ubuntu-22.04
     timeout-minutes: 120
     env:
       MAVEN_OPTS: "-Dmaven.repo.local=${{ github.workspace }}/.m2/repository -Dorg.slf4j.simpleLogger.showDateTime=true -Djava.awt.headless=true"
