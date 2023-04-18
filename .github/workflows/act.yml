@@ -15,11 +15,53 @@ jobs:
       with:
         arch: x86
     - run: '& ".\build-product-magpath.ps1"'
-    - uses: dlemstra/code-sign-action@v1
+    - uses: actions/upload-artifact@v3
+      if: success()
       with:
-        certificate: '${{ secrets.CERTIFICATE }}'
-        password: '${{ secrets.CERTIFICATE_PASSWORD }}'
-        folder: 'code/Release'
-        recursive: true
-        files: |
-          Magnolia-IDE.exe
+        name: "${{ github.job }}"
+        retention-days: 1
+        path: code/Release/Magnolia-IDE.exe
+
+  build_ide:
+    runs-on: ubuntu-2204
+    timeout-minutes: 120
+    env:
+      MAVEN_OPTS: "-Dmaven.repo.local=${{ github.workspace }}/builddeps/mvnrepo -Dorg.slf4j.simpleLogger.showDateTime=true -Djava.awt.headless=true"
+      MAVEN_CLI_OPTS: "-o --batch-mode --errors --fail-at-end --show-version --no-transfer-progress -DinstallAtEnd=true -DdeployAtEnd=true"
+      JAVA_HOME: "$JAVA_HOME_17_X64"
+    steps:
+    - uses: actions/checkout@v3
+      with:
+        lfs: true
+        submodules: recursive
+    - uses: actions/cache@v3
+      with:
+        path: |-
+          .m2/repository
+          ide/at.zeha.lm4.releng.master/.cache
+        key: default
+    - run: cd ide/at.zeha.lm4.releng.master && mvn $MAVEN_CLI_OPTS clean verify
+    - uses: actions/upload-artifact@v3
+      if: success()
+      with:
+        name: "${{ github.job }}"
+        retention-days: 1
+        path: ide/at.zeha.lm4.product/target/mag_win32
+
+# collect_win32:
+#   runs-on: windows-2022
+#   timeout-minutes: 120
+#   steps:
+#   - uses: actions/checkout@v3
+#   - uses: ilammy/msvc-dev-cmd@v1
+#     with:
+#       arch: x86
+#   - run: '& ".\build-product-magpath.ps1"'
+#   - uses: dlemstra/code-sign-action@v1
+#     with:
+#       certificate: '${{ secrets.CERTIFICATE }}'
+#       password: '${{ secrets.CERTIFICATE_PASSWORD }}'
+#       folder: 'code/Release'
+#       recursive: true
+#       files: |
+#         Magnolia-IDE.exe

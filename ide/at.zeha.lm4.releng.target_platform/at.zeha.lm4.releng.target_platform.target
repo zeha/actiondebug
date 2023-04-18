@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<?pde version="3.8"?>
+
+<!-- git_pre_commit_marker -->
+
+<!--
+Vorteile der manuellen Wartung der Target Platform Definition:
+
+  - Nicht nur Features sondern auch einzelne Plugins können inkludiert werden.
+  - Versionsnummern müssen nicht explizit angeben werden (version="0.0.0").
+  - Die bestehende Auswahl geht beim Bearbeiten der Repository Location nicht verloren.
+  - Kommentare koennen angebracht werden.
+-->
+
+<target name="at.zeha.lm4.releng.target_platform">
+
+  <locations>
+
+    <!-- ECLIPSE RELEASES REPO -->
+    <location includeAllPlatforms="false" includeConfigurePhase="true" includeMode="planner" includeSource="true" type="InstallableUnit">
+      <repository location="http://download.eclipse.org/releases/2022-12"/>
+      
+      <unit id="org.eclipse.equinox.sdk.feature.group" version="0.0.0"/>
+      <unit id="org.eclipse.sdk.ide" version="0.0.0"/>
+    </location>
+   
+  </locations>
+
+    <!--
+        At development time let Eclipse determine the environment automatically.
+        When building with Maven Tycho we explicitely specify which environments
+        to build for.
+    -->
+  <environment>
+        <!--
+            <os>win32</os>
+            <ws>win32</ws>
+            <arch>x86</arch>
+        -->
+  </environment>
+
+</target>

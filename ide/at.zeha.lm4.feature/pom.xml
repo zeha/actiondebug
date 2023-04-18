@@ -1,0 +1,19 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+
+    <modelVersion>4.0.0</modelVersion>
+
+    <artifactId>at.zeha.lm4.feature</artifactId>
+
+    <name>Magnolia Feature</name>
+
+    <parent>
+        <groupId>at.zeha.lm4</groupId>
+        <artifactId>at.zeha.lm4.releng.master</artifactId>
+        <version>1.7.27-SNAPSHOT</version>
+        <relativePath>../at.zeha.lm4.releng.master/pom.xml</relativePath>
+    </parent>
+
+    <packaging>eclipse-feature</packaging>
+
+</project>

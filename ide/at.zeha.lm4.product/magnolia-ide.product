@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?pde version="3.5"?>
+
+<product name="Magnolia" uid="at.zeha.lm4.ide.product" id="at.zeha.lm4.plugin.ide" application="org.eclipse.ui.ide.workbench" version="0.0.0.qualifier" useFeatures="true" includeLaunchers="true" autoIncludeRequirements="true">
+
+   <aboutInfo>
+      <image path="/at.zeha.lm4.plugin/about.png"/>
+      <text>
+         Magnolia IDE
+
+Copyright 2010-2020 Deduktiva GmbH and contributors.
+
+This product includes software developed by the
+Eclipse Foundation http://www.eclipse.org
+This product includes software developed by the
+Apache Foundation http://www.apache.org
+      </text>
+   </aboutInfo>
+
+   <configIni use="default">
+   </configIni>
+
+   <launcherArgs>
+      <programArgs>-showlocation
+      </programArgs>
+      <vmArgs>-Dosgi.instance.area.default=@user.home/Documents/Magnolia  -Xms256m -Xmx512m
+      </vmArgs>
+      <vmArgsMac>-XstartOnFirstThread -Dorg.eclipse.swt.internal.carbon.smallFonts
+      </vmArgsMac>
+   </launcherArgs>
+
+   <windowImages i16="/at.zeha.lm4.plugin/icons/magnolia16.gif" i32="/at.zeha.lm4.plugin/icons/magnolia32.png" i48="/at.zeha.lm4.plugin/icons/magnolia48.png"/>
+
+   <splash
+      location="at.zeha.lm4.plugin"
+      startupProgressRect="110,250,295,12"
+      startupMessageRect="110,264,295,20"
+      startupForegroundColor="000000" />
+   <launcher name="Magnolia-IDE-Eclipse">
+      <macosx icon="/at.zeha.lm4.plugin/icons/Magnolia.icns"/>
+      <win useIco="true">
+         <ico path="/at.zeha.lm4.plugin/icons/magnolia-app.ico"/>
+         <bmp/>
+      </win>
+   </launcher>
+
+   <vm>
+   </vm>
+
+   <license>
+        <text>
+   Magnolia IDE Commercial License
+
+This product is commercially licensed.
+
+Copyright 2010-2020 Deduktiva GmbH and contributors.
+
+Includes software developed by:
+  Eclipse Foundation http://www.eclipse.org
+  Apache Foundation http://www.apache.org
+         </text>
+   </license>
+
+   <plugins>
+   </plugins>
+
+   <features>
+      <feature id="at.zeha.lm4.feature" installMode="root"/>
+      <feature id="org.eclipse.e4.rcp" installMode="root"/>
+      <feature id="org.eclipse.emf.ecore" installMode="root"/>
+      <feature id="org.eclipse.emf.common" installMode="root"/>
+   </features>
+
+   <configurations>
+      <plugin id="org.apache.felix.scr" autoStart="true" startLevel="2" />
+      <plugin id="org.eclipse.core.runtime" autoStart="true" startLevel="0" />
+      <plugin id="org.eclipse.equinox.common" autoStart="true" startLevel="2" />
+      <plugin id="org.eclipse.equinox.event" autoStart="true" startLevel="2" />
+      <plugin id="org.eclipse.equinox.simpleconfigurator" autoStart="true" startLevel="1" />
+   </configurations>
+
+</product>

@@ -1,0 +1,4 @@
+instructions.configure.import=org.eclipse.equinox.p2.touchpoint.eclipse.addRepository
+instructions.configure=\
+	addRepository(type:0,location:http${#58}//update.magnolia.zeha.at/update/1/,name:Magnolia Update Site);\
+	addRepository(type:1,location:http${#58}//update.magnolia.zeha.at/update/1/,name:Magnolia Update Site);

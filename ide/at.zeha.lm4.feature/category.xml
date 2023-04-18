@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<site>
+   <feature url="features/at.zeha.lm4.ide_1.0.0.qualifier.jar" id="at.zeha.lm4.ide" version="1.0.0.qualifier">
+      <category name="at.zeha.lm4"/>
+   </feature>
+   <category-def name="at.zeha.lm4" label="Magnolia Category">
+      <description>
+         This is Magnolia.
+      </description>
+   </category-def>
+</site>
