@@ -26,8 +26,7 @@ jobs:
     runs-on: ubuntu-22.04
     timeout-minutes: 120
     env:
-      MAVEN_OPTS: "-Dmaven.repo.local=${{ github.workspace }}/.m2/repository -Dorg.slf4j.simpleLogger.showDateTime=true -Djava.awt.headless=true"
-      MAVEN_CLI_OPTS: "--batch-mode --errors --fail-at-end --show-version --no-transfer-progress -DinstallAtEnd=true -DdeployAtEnd=true"
+      MAVEN_CLI_OPTS: "--batch-mode --show-version"
     steps:
     - uses: actions/checkout@v3
     - name: Set up JDK 17
@@ -35,13 +34,15 @@ jobs:
       with:
         java-version: '17'
         distribution: 'temurin'
-    - uses: actions/cache@v3
+    - name: Restore Maven cache
+      uses: skjolber/maven-cache-github-action@v1
       with:
-        path: |-
-          .m2/repository
-          ide/at.zeha.lm4.releng.master/.cache
-        key: default
+        step: restore
     - run: cd ide/at.zeha.lm4.releng.master && mvn $MAVEN_CLI_OPTS clean verify
+    - name: Save Maven cache
+      uses: skjolber/maven-cache-github-action@v1
+      with:
+        step: save
     - uses: actions/upload-artifact@v3
       if: success()
       with:
