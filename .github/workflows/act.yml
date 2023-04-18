@@ -19,7 +19,7 @@ jobs:
       with:
         certificate: '${{ secrets.CERTIFICATE }}'
         password: '${{ secrets.CERTIFICATE_PASSWORD }}'
-        folder: 'code\Release'
+        folder: 'code/Release'
         recursive: true
         files: |
           Magnolia-IDE.exe
