@@ -22,33 +22,50 @@ jobs:
   #       retention-days: 1
   #       path: code/Release/Magnolia-IDE.exe
 
-  build_ide:
+  version1:
     runs-on: ubuntu-22.04
     timeout-minutes: 120
-    env:
-      MAVEN_CLI_OPTS: "--batch-mode --show-version"
     steps:
-    - uses: actions/checkout@v3
-    - name: Set up JDK 17
-      uses: actions/setup-java@v3
-      with:
-        java-version: '17'
-        distribution: 'temurin'
-    - name: Restore Maven cache
-      uses: skjolber/maven-cache-github-action@v1
-      with:
-        step: restore
-    - run: cd ide/at.zeha.lm4.releng.master && mvn $MAVEN_CLI_OPTS clean verify
-    - name: Save Maven cache
-      uses: skjolber/maven-cache-github-action@v1
-      with:
-        step: save
-    - uses: actions/upload-artifact@v3
-      if: success()
-      with:
-        name: "${{ github.job }}"
-        retention-days: 1
-        path: ide/at.zeha.lm4.product/target/mag_win32
+    - run: echo "GITHUB_RUN_ID: $GITHUB_RUN_ID"
+    - run: echo "GITHUB_RUN_NUMBER: $GITHUB_RUN_NUMBER"
+    - run: echo "GITHUB_RUN_ATTEMPT: $GITHUB_RUN_ATTEMPT"
+
+  version2:
+    runs-on: ubuntu-22.04
+    timeout-minutes: 120
+    steps:
+    - run: echo "GITHUB_RUN_ID: $GITHUB_RUN_ID"
+    - run: echo "GITHUB_RUN_NUMBER: $GITHUB_RUN_NUMBER"
+    - run: echo "GITHUB_RUN_ATTEMPT: $GITHUB_RUN_ATTEMPT"
+
+
+  # build_ide:
+  #   runs-on: ubuntu-22.04
+  #   timeout-minutes: 120
+  #   env:
+  #     MAVEN_CLI_OPTS: "--batch-mode --show-version"
+  #   steps:
+  #   - uses: actions/checkout@v3
+  #   - name: Set up JDK 17
+  #     uses: actions/setup-java@v3
+  #     with:
+  #       java-version: '17'
+  #       distribution: 'temurin'
+  #   - name: Restore Maven cache
+  #     uses: skjolber/maven-cache-github-action@v1
+  #     with:
+  #       step: restore
+  #   - run: cd ide/at.zeha.lm4.releng.master && mvn $MAVEN_CLI_OPTS clean verify
+  #   - name: Save Maven cache
+  #     uses: skjolber/maven-cache-github-action@v1
+  #     with:
+  #       step: save
+  #   - uses: actions/upload-artifact@v3
+  #     if: success()
+  #     with:
+  #       name: "${{ github.job }}"
+  #       retention-days: 1
+  #       path: ide/at.zeha.lm4.product/target/mag_win32
 
 # collect_win32:
 #   runs-on: windows-2022
