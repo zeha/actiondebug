@@ -12,6 +12,6 @@ jobs:
     timeout-minutes: 60
     steps:
     - uses: actions/checkout@v3
-    - run: sudo apt-get install -fy python2.7-full python-pip
+    - run: sudo apt-get install -fy python2.7 python2.7-dev python-pip
     - run: python2 -m pip install pytest
     - run: pytest
